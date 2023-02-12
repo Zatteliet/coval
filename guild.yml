@@ -1,0 +1,7 @@
+- model: coref_eval
+  operations:
+    score:
+      main: scorer
+      flags-import: all
+      requires:
+        - operation: coref_eval:make_conll
