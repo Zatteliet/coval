@@ -1,19 +1,22 @@
 # CoVal: A coreference evaluation tool for the CoNLL and ARRAU datasets
 
-Implementation of the common evaluation metrics including MUC,
-B-cubed, CEAFe, and LEA for both CoNLL and ARRAU datasets.
-See the paper [Which Coreference Evaluation Metric Do You Trust? A Proposal for
-a Link-based Entity Aware Metric](https://www.aclweb.org/anthology/P16-1060).
+Implementation of the common evaluation metrics including MUC, B-cubed, CEAFe, and LEA for both CoNLL and ARRAU datasets. See the paper [Which Coreference Evaluation Metric Do You Trust? A Proposal for a Link-based Entity Aware Metric](https://www.aclweb.org/anthology/P16-1060).
+
+This fork has been updated to work with Guild AI.
 
 ### Requirements
-This evaluation tool requires numpy and scipy packages.
+
+See `requirements.txt`.
 
 ## Usage
+
+`scorer.py` is the entrypoint to scoring. It contains hardcoded references to key and system files. Guild AI picks up these parameters as flags.
+
 Basic usage with CoNLL files:
 
-	$ python scorer.py key system
+	$ guild run score
 
-`key` and `system` are the files with gold coreference and system output, respectively.
+The `key` and `system` flags are the files with gold coreference and system output, respectively.
 
 For more details, refer to
 [ARRAU README](https://github.com/ns-moosavi/coval/blob/master/arrau/README.md)
@@ -21,9 +24,10 @@ for evaluations of the ARRAU files and
 [CoNLL README](https://github.com/ns-moosavi/coval/blob/master/conll/README.md)
 for CoNLL evaluations.
 
-Run tests with `python3 -m pytest unittests.py`
+Run tests with `python3 -m pytest unittests.py`.
 
 ## Reference
+
 If you use this code in your work, please cite the paper:
 ```
 @InProceedings{moosavi2019minimum,
