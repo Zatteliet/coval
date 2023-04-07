@@ -1,7 +1,7 @@
 - model: coref_eval
   operations:
     score:
-      main: coval/cli
+      main: cli
       flags:
         key_file: gold.conll
         sys_file: pred.conll
