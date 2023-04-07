@@ -1,7 +1,14 @@
 - model: coref_eval
   operations:
     score:
-      main: scorer
-      flags-import: all
+      main: coval/cli
+      flags:
+        key_file: gold.conll
+        sys_file: pred.conll
+        np_only: no
+        remove_nested: no
+        keep_singletons: yes
+        min_span: no
+
       requires:
         - operation: coref_eval:make_conll
