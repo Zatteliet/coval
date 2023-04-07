@@ -8,7 +8,7 @@ This script allows pip-installing CoVal as a Python module.
 import setuptools
 
 with open("README.md", "r") as fh:
-  long_description = fh.read()
+    long_description = fh.read()
 
 
 setuptools.setup(
@@ -19,7 +19,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ns-moosavi/coval",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(where="coval"),
+    package_dir={"": "coval"},
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
@@ -30,4 +31,5 @@ setuptools.setup(
     ],
     license="LICENSE",
     python_requires=">=3",
-    install_requires=["numpy", "scipy>=0.17.0"])
+    install_requires=["numpy", "scipy>=0.17.0"],
+)
