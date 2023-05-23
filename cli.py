@@ -13,7 +13,7 @@ parser.add_argument("--min_span", default=False)
 
 args = parser.parse_args()
 
-scorer.score(
+scores, conll = scorer.score(
     args.key_file,
     args.sys_file,
     np_only=args.np_only,
@@ -21,3 +21,9 @@ scorer.score(
     keep_singletons=args.keep_singletons,
     min_span=args.min_span,
 )
+
+print()
+print(scores)
+print()
+print("CoNLL score:", conll)
+print()

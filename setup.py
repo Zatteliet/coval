@@ -30,5 +30,5 @@ setuptools.setup(
     ],
     license="LICENSE",
     python_requires=">=3",
-    install_requires=["numpy", "scipy>=0.17.0", "tabulate"],
+    install_requires=["numpy", "scipy>=0.17.0", "tabulate", "pandas"],
 )

@@ -1,4 +1,4 @@
-from tabulate import tabulate
+import pandas as pd
 
 from coval.conll import reader, util
 from coval.eval import evaluator
@@ -12,7 +12,11 @@ def score(
     remove_nested=False,
     keep_singletons=True,
     min_span=False,
-):
+) -> tuple[pd.DataFrame, float | None]:
+    """Score a system output against a key file.
+
+    Return a DataFrame with the scores for each metric and, if applicable, the CoNLL score (else None).
+    """
     if min_span:
         has_gold_parse = util.check_gold_parse_annotation(key_file)
         if not has_gold_parse:
@@ -45,8 +49,11 @@ def score(
             conll += f1
             conll_subparts_num += 1
     headers = ["name", "recall", "precision", "f1"]
-    print(tabulate(scores, headers=headers, tablefmt="fancy_grid"))
+    table = pd.DataFrame(scores, columns=headers)
 
     if conll_subparts_num == 3:
         conll = (conll / 3) * 100
-        print(tabulate([["ConLL score", conll]], tablefmt="fancy_grid"))
+    else:
+        conll = None
+
+    return table, conll
