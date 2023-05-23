@@ -11,21 +11,27 @@ class Markable:
         if isinstance(other, self.__class__):
             # MIN is only set for the key markables
             if self.MIN:
-                return (self.doc_name == other.doc_name
-                        and other.start >= self.start
-                        and other.start <= self.MIN[0]
-                        and other.end <= self.end
-                        and other.end >= self.MIN[1])
+                return (
+                    self.doc_name == other.doc_name
+                    and other.start >= self.start
+                    and other.start <= self.MIN[0]
+                    and other.end <= self.end
+                    and other.end >= self.MIN[1]
+                )
             elif other.MIN:
-                return (self.doc_name == other.doc_name
-                        and self.start >= other.start
-                        and self.start <= other.MIN[0]
-                        and self.end <= other.end
-                        and self.end >= other.MIN[1])
+                return (
+                    self.doc_name == other.doc_name
+                    and self.start >= other.start
+                    and self.start <= other.MIN[0]
+                    and self.end <= other.end
+                    and self.end >= other.MIN[1]
+                )
             else:
-                return (self.doc_name == other.doc_name
-                        and self.start == other.start
-                        and self.end == other.end)
+                return (
+                    self.doc_name == other.doc_name
+                    and self.start == other.start
+                    and self.end == other.end
+                )
         return NotImplemented
 
     def __neq__(self, other):
@@ -37,8 +43,11 @@ class Markable:
         return hash(frozenset((self.start, self.end)))
 
     def __str__(self):
-        return ('DOC: %s SPAN: (%d, %d) String: %r MIN: %s Referring tag: %s'
-                % (
-                    self.doc_name, self.start, self.end, ' '.join(self.words),
-                    '(%d, %d)' % self.MIN if self.MIN else '',
-                    self.is_referring))
+        return "DOC: %s SPAN: (%d, %d) String: %r MIN: %s Referring tag: %s" % (
+            self.doc_name,
+            self.start,
+            self.end,
+            " ".join(self.words),
+            "(%d, %d)" % self.MIN if self.MIN else "",
+            self.is_referring,
+        )
